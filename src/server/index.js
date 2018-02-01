@@ -7,7 +7,7 @@ const Printer = require('thermalprinter');
 const logo = `${__dirname}/images/logo.png`;
 let count = require('./count.json');
 
-const serialPort = new SerialPort('/dev/cu.usbserial', { baudRate: 19200 });
+const serialPort = new SerialPort('/dev/ttyUSB0', { baudRate: 19200 });
 let printer;
 
 console.log('current count', count);
