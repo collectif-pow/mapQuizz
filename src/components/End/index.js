@@ -36,6 +36,9 @@ class End extends Component {
 	constructor(props) {
 		super(props);
 		this.message = this.computeAnswers();
+		this.state = {
+			disabled: true,
+		};
 	}
 	computeAnswers = () => {
 		switch (this.props.answers.length) {
@@ -58,7 +61,9 @@ class End extends Component {
 		}
 	};
 	componentDidMount() {
-		fetch('http://192.168.43.44:3000/api/print');
+		fetch('http://192.168.4.1:3000/api/print').then(response => {
+			this.setState({ disabled: false });
+		});
 	}
 	render() {
 		return (
@@ -74,6 +79,7 @@ class End extends Component {
 						iconRight={{ name: 'chevron-right' }}
 						title="Redémarrer le quizz"
 						backgroundColor="#000000"
+						disabled={this.state.disabled}
 						onPress={() => {
 							this.props.navigation.navigate('Home');
 							this.props.clearAnswers();
