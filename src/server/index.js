@@ -5,6 +5,7 @@ const SerialPort = require('serialport');
 const Printer = require('thermalprinter');
 
 const logo = `${__dirname}/images/logo.png`;
+const ciseaux = `${__dirname}/images/ciseaux.png`;
 let count = require('./count.json');
 
 const serialPort = new SerialPort('/dev/ttyUSB0', { baudRate: 19200 });
@@ -41,9 +42,9 @@ app.get('/api/print', (req, res) => {
 		.printLine('A conserver')
 		.printLine('' + count.count)
 		.big(false)
-		.horizontalLine(32)
-		.lineFeed(2)
-		.horizontalLine(32)
+		.lineFeed(1)
+		.printImage(ciseaux)
+		.lineFeed(1)
 		.big(true)
 		.printLine("Pour l'urne")
 		.printLine('' + count.count)
